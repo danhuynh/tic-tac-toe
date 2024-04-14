@@ -1,14 +1,14 @@
+const cells = document.querySelectorAll('.cell');
+let turn = 'X';
+const boardState = Array(cells.length);
+boardState.fill(null);
+
 function restartGame() {
     boardState.fill(null);
     cells.forEach(cell => cell.textContent = '');
     turn = 'X'; // Reset the turn to X
     alert('Game restarted! X goes first.');
 }
-
-const cells = document.querySelectorAll('.cell');
-let turn = 'X';
-const boardState = Array(cells.length);
-boardState.fill(null);
 
 function makeMove(cell, index) {
     if (boardState[index] || isGameOver()) {
@@ -20,7 +20,12 @@ function makeMove(cell, index) {
         alert(turn + ' wins!');
         return;
     }
-    turn = turn === 'X' ? 'O' : 'X';
+    // After checking for a winner, check if the game has ended in a tie
+    if (isGameOver()) { // Check if all cells are filled and no winner
+        alert('It\'s a tie!');
+        return;
+    }
+    turn = turn === 'X' ? 'O' : 'X'; // Switch turn
 }
 
 function checkWinner() {
@@ -36,5 +41,5 @@ function checkWinner() {
 }
 
 function isGameOver() {
-    return boardState.every(cell => cell !== null);
+    return boardState.every(cell => cell !== null); // Checks if all cells are filled
 }
