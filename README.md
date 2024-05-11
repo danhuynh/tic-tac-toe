@@ -45,3 +45,7 @@ Feel free to fork this repository and submit pull requests. You can also open is
 ## License
 
 This project is free to use and does not currently have a specific license.
+
+## Notes
+
+I'm making an update on my iPad.
